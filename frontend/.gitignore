@@ -1,0 +1,4 @@
+# Dépendances installées par npm
+node_modules
+# Version construite de l'application
+dist
