@@ -17,7 +17,8 @@ function App() {
 
   return (
     <div>
-      <h1>Feedback Hub</h1>
+      {/* Nom lu dans .env.development ou .env.production selon la commande */}
+      <h1>{import.meta.env.VITE_APP_NAME}</h1>
 
       <label htmlFor="titre-idee">Titre de l'idée</label>
       <input
