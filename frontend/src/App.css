@@ -4,3 +4,19 @@ body {
   text-align: center;
   margin-top: 4rem;
 }
+
+/* Champ de saisie et bouton */
+label {
+  margin-right: 0.5rem;
+}
+
+input {
+  margin-right: 0.5rem;
+  padding: 0.3rem;
+}
+
+/* Liste des idées */
+ul {
+  list-style: none;
+  padding: 0;
+}
