@@ -24,6 +24,7 @@ function App() {
       <input
         id="titre-idee"
         type="text"
+        placeholder="Ex : ajouter un mode sombre"
         value={titreIdee}
         onChange={(event) => setTitreIdee(event.target.value)}
       />

@@ -1,22 +1,255 @@
-/* Styles de l'application */
+/* Styles de l'application — esprit années 70 revisité, moderne et coloré */
+
+/* Couleurs utilisées partout */
+:root {
+  --creme: #fbf3e4;
+  --blanc: #fffbf4;
+  --texte: #3b2418;
+  --texte-doux: #8a6a58;
+
+  /* Palette 70s saturée */
+  --orange: #e2571e;
+  --moutarde: #e8a917;
+  --framboise: #d6336c;
+  --sauge: #7fa36b;
+}
+
+/* Fond crème, texte courant en sans-serif moderne */
 body {
-  font-family: system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--creme);
+  color: var(--texte);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Décor : grand arc-en-ciel 70s en bas à gauche */
+body::before {
+  content: "";
+  position: fixed;
+  left: -280px;
+  bottom: -280px;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    var(--creme) 0 38%,
+    var(--sauge) 38% 53%,
+    var(--moutarde) 53% 68%,
+    var(--orange) 68% 83%,
+    var(--framboise) 83% 98%,
+    transparent 98%
+  );
+  z-index: 0;
+}
+
+/* Décor : plus petit arc-en-ciel en haut à droite */
+body::after {
+  content: "";
+  position: fixed;
+  right: -170px;
+  top: -170px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    var(--creme) 0 40%,
+    var(--framboise) 40% 55%,
+    var(--orange) 55% 70%,
+    var(--moutarde) 70% 85%,
+    var(--sauge) 85% 98%,
+    transparent 98%
+  );
+  z-index: 0;
+}
+
+/* Carte centrale qui contient toute l'application */
+#root > div {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 110px auto 60px;
+  padding: 52px 44px;
+  background: var(--blanc);
+  border-radius: 40px;
+  box-shadow: 0 20px 50px rgba(59, 36, 24, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Grand titre : typo rétro bien grasse, nette, sans ombre */
+h1 {
+  width: 100%;
+  margin: 0 0 20px;
   text-align: center;
-  margin-top: 4rem;
+  font-family: "Shrikhand", "Cooper Black", Georgia, serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--orange);
 }
 
-/* Champ de saisie et bouton */
+/* Libellé « Titre de l'idée » */
 label {
-  margin-right: 0.5rem;
+  width: 100%;
+  padding-left: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texte-doux);
 }
 
+/* Champ de saisie arrondi */
 input {
-  margin-right: 0.5rem;
-  padding: 0.3rem;
+  flex: 1;
+  min-width: 0;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--texte);
+  background: var(--creme);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+/* Texte d'exemple affiché dans le champ vide */
+input::placeholder {
+  color: #b89a87;
+}
+
+input:hover {
+  border-color: #efdcc4;
+}
+
+/* Contour visible quand on est dans le champ */
+input:focus {
+  background: var(--blanc);
+  border-color: var(--moutarde);
+  box-shadow: 0 0 0 5px rgba(232, 169, 23, 0.2);
+}
+
+/* Bouton « Ajouter » en forme de pilule, ombre décalée nette */
+button {
+  padding: 16px 30px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--blanc);
+  background: var(--framboise);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--texte);
+  cursor: pointer;
+  /* La courbe fait légèrement « rebondir » le bouton */
+  transition: transform 0.25s cubic-bezier(0.34, 1.8, 0.64, 1), box-shadow 0.25s;
+}
+
+/* Effet rebond au survol */
+button:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 6px 7px 0 var(--texte);
+}
+
+/* Effet « bouton enfoncé » au clic */
+button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--texte);
+  transition-duration: 0.05s;
+}
+
+/* Contour visible quand on arrive sur le bouton au clavier */
+button:focus-visible {
+  outline: 3px solid var(--moutarde);
+  outline-offset: 3px;
 }
 
 /* Liste des idées */
 ul {
+  width: 100%;
   list-style: none;
   padding: 0;
+  margin: 24px 0 0;
+}
+
+/* Chaque idée : une pilule claire avec une pastille de couleur */
+li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding: 16px 24px;
+  background: var(--creme);
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  /* Petite animation quand une idée est ajoutée */
+  animation: apparition 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Pastille de couleur devant chaque idée */
+li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* Les pastilles alternent entre les 4 couleurs de la palette */
+li:nth-child(4n + 2)::before {
+  background: var(--moutarde);
+}
+
+li:nth-child(4n + 3)::before {
+  background: var(--framboise);
+}
+
+li:nth-child(4n + 4)::before {
+  background: var(--sauge);
+}
+
+/* Animation : l'idée apparaît avec un léger rebond */
+@keyframes apparition {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sur téléphone : arcs plus petits et moins de marges */
+@media (max-width: 600px) {
+  body::before {
+    width: 360px;
+    height: 360px;
+    left: -180px;
+    bottom: -180px;
+  }
+
+  body::after {
+    width: 220px;
+    height: 220px;
+    right: -110px;
+    top: -110px;
+  }
+
+  #root > div {
+    margin: 70px 16px 32px;
+    padding: 36px 22px;
+    border-radius: 28px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
 }
